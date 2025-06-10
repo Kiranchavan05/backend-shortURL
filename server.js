@@ -7,11 +7,7 @@ require('dotenv').config();
 const app = express();
 
 // CORS configuration
-app.use(cors({
-  origin: 'http://localhost:5173', // Vite's default port
-  methods: ['GET', 'POST'],
-  credentials: true
-}));
+app.use(cors());
 
 app.use(express.json());
 
