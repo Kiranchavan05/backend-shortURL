@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/database');
 const urlRoutes = require('./routes/urlRoutes');
+const urlController = require('./controllers/urlController');
 require('dotenv').config();
 
 const app = express();
@@ -18,6 +19,9 @@ connectDB();
 app.get('/', (req, res) => {
   res.json({ message: 'URL Shortener API is running' });
 });
+
+// Redirect route for short URLs
+app.get('/:shortCode', urlController.redirectToUrl);
 
 // API routes
 app.use('/api', urlRoutes);

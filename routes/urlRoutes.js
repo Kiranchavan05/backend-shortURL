@@ -10,7 +10,4 @@ router.get('/', (req, res) => {
 // API routes
 router.post('/shorten', urlController.shortenUrl);
 
-// Redirect route - this should be the last route
-router.get('/:shortCode', urlController.redirectToUrl);
-
 module.exports = router; 

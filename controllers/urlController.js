@@ -29,10 +29,15 @@ class UrlController {
       const url = await urlService.getUrlByShortCode(req.params.shortCode);
       console.log('Found URL document:', url);
       
-      res.status(200).json({
-        success: true,
-        data: url
-      });
+      if (!url) {
+        return res.status(404).json({ 
+          success: false,
+          error: 'URL not found' 
+        });
+      }
+
+      // Redirect to the original URL
+      res.redirect(url.originalUrl);
     } catch (error) {
       console.error('Error:', error);
       res.status(404).json({ 
